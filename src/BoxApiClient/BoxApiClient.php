@@ -59,13 +59,40 @@ class BoxApiClient extends Client
       return $guzzleClient;
     }
 
+  /**
+   * Searches for items that are available to the user or an entire enterprise.
+   *
+   * @param integer $id The folder ID.
+   * @param string $fields A comma-separated list of attributes to include in the response.
+   * @param string $type Limits search results to items of this type.
+   * @param stirng $fileExtensions Limits search results to a comma-separated list of file extensions.
+   * @param string (array) $mdfilters 'Limits search results to items that match the metadata template name and content.
+   * @param integer $limit The number of items to return.
+   * @param integer $offset The item at which to begin the response.
+   * @return array|mixed
+   */
+  public function searchFolder($id, $fields = NULL, $type, $fileExtensions, $mdfilters, $limit = 100, $offset = 0)
+  {
+    $guzzleClient = $this->getGuzzleClient();
+    $command = $guzzleClient->getCommand('SearchFolder', array(
+      'ancestor_folder_ids' => $id,
+      'type' => $type,
+      'fields' => $fields,
+      'file_extensions' => $fileExtensions,
+      'mdfilters' => $mdfilters,
+      'limit' => $limit,
+      'offset' => $offset
+    ));
+    return $guzzleClient->execute($command);
+  }
+
     /**
      * Get information about a folder's items.
      *
      * @param integer $id The folder ID.
-     * @param integer $id The folder ID.
-     * @param integer $id The folder ID.
-     * @param integer $id The folder ID.
+     * @param $fields A comma-separated list of attributes to include in the response.
+     * @param integer $limit The number of items to return.
+     * @param integer $offset The item at which to begin the response.
      * @return array|mixed
      */
     public function getFolderItems($id, $fields = NULL, $limit = 100, $offset = 0)

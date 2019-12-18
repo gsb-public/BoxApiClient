@@ -13,6 +13,48 @@ class ClientCommands
       //  'baseUrl' => 'https://api.box.com/2.0/',
       'description' => 'Box.com is a cloud file storage service',
       'operations' => array(
+        'SearchFolder' => array(
+          'description' => 'Searches for items that are available to the user or an entire enterprise.',
+          'httpMethod' => 'GET',
+          'uri' => 'https://api.box.com/2.0/search',
+          'parameters' => array(
+            'ancestor_folder_ids' => array(
+              'description' => 'Search results will also include items within subfolders.',
+              'location' => 'query',
+              'type' => 'string',
+            ),
+            'fields' => array(
+              'description' => 'A comma-separated list of attributes to include in the response. This can be used to request fields that are not normally returned in a standard response.',
+              'location' => 'query',
+              'type' => 'array',
+            ),
+            'type' => array(
+              'description' => 'Limits search results to items of this type.',
+              'location' => 'query',
+              'type' => 'string',
+            ),
+            'file_extensions' => array(
+              'description' => 'Limits search results to a comma-separated list of file extensions.',
+              'location' => 'query',
+              'type' => 'string',
+            ),
+            'mdfilters' => array(
+              'description' => 'Limits search results to items that match the metadata template name and content.',
+              'location' => 'query',
+              'type' => 'string',
+            ),
+            'limit' => array(
+              'description' => 'The number of items to return.',
+              'location' => 'query',
+              'type' => 'integer',
+            ),
+            'offset' => array(
+              'description' => 'The item at which to begin the response.',
+              'location' => 'query',
+              'type' => 'integer',
+            ),
+          ),
+        ),
         'GetFolderItems' => array(
           'description' => 'Retrieves the files and/or folders contained within this folder without any other metadata about the folder.',
           'httpMethod' => 'GET',
