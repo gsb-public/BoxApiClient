@@ -344,15 +344,15 @@ class BoxApiClient extends Client
     public function metaGetData($id)
     {
       $guzzleClient = $this->getGuzzleClient();
-      $command = $this->getCommand('MetaGetData', array('id' => $id));
-      return $this->execute($command);
+      $command = $guzzleClient->getCommand('MetaGetData', array('id' => $id));
+      return $guzzleClient->execute($command);
     }
 
     public function metaGetType($id, $type)
     {
       $guzzleClient = $this->getGuzzleClient();
-      $command = $this->getCommand('MetaGetType', array('id' => $id, 'type' => $type));
-      return $this->execute($command);
+      $command = $guzzleClient->getCommand('MetaGetType', array('id' => $id, 'type' => $type));
+      return $guzzleClient->execute($command);
     }
 
     public function metaCreateType($id, $type, $values)
