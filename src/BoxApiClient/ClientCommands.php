@@ -584,6 +584,20 @@ class ClientCommands
 
         // METADATA API
 
+        'MetaGetData' => array(
+          'description' => 'Used to retrieve the metadata type instance for a corresponding Box file.',
+          'httpMethod' => 'GET',
+          'uri' => 'https://api.box.com/2.0/files/{id}/metadata',
+          'parameters' => array(
+            'id' => array(
+              'description' => 'File ID',
+              'location' => 'uri',
+              'type' => 'string',
+              'required' => true,
+            ),
+          ),
+        ),
+
         'MetaGetType' => array(
           'description' => 'Used to retrieve the metadata type instance for a corresponding Box file.',
           'httpMethod' => 'GET',
